@@ -1,6 +1,9 @@
 require("bundler/setup")
 Bundler.require(:default)
 require('pry')
+require('bcrypt')
+
+enable  :sessions, :logging
 
 
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
@@ -10,8 +13,12 @@ get("/") do
 end
 
 get("/shoestores") do
-  @shoestores = Store.all
-  erb(:shoestores)
+  if session[:user_id] != nil
+    @shoestores = Store.all
+    erb(:shoestores)
+  else
+    erb(:security)
+  end
 end
 
 get("/shoestores/:id") do
@@ -40,9 +47,15 @@ delete("/shoestores/:id") do
 end
 
 get("/brands") do
-  @brands = Brand.all
-  erb(:brands)
+  if session[:user_id] != nil
+    @brands = Brand.all
+    erb(:brands)
+  else
+    erb(:security)
+  end
 end
+
+
 
 get("/brands/:id") do
   @brand = Brand.find(params['id'])
@@ -53,12 +66,6 @@ end
 post("/brands") do
   brand_name = params['brand_name']
   brand_price = params['brand_price']
-  var1 = "$"
-  var2 = ""
-  brand_price.to_s
-
-
-
   Brand.find_or_create_by({:name => brand_name, :cost => brand_price})
   redirect back
 end
@@ -66,8 +73,6 @@ end
 patch("/brands/:id") do
   new_name = params['brand_name']
   new_price = params['brand_price']
-
-
   brand = Brand.find(params['id'])
   brand.update({:name => new_name, :cost => new_price})
   redirect("/brands/#{brand.id}")
@@ -91,4 +96,32 @@ post("/brands/:id/relationship") do
   brand_id = params['brand_id']
   Relationship.find_or_create_by({:brand_id => brand_id, :store_id => store_id})
   redirect back
+end
+
+post "/signup" do
+    user = User.new(:username => params[:username], :password => params[:password])
+    if user.save
+        puts "Success!"
+        redirect back
+    else
+        puts "Failure."
+        erb(:security)
+    end
+end
+
+post "/login" do
+    user = User.find_by(:username => params[:username])
+    if user && user.authenticate(params[:password])
+        session[:user_id] = user.id
+        puts "Success!"
+        redirect back
+    else
+        puts "Failure."
+        erb(:security)
+    end
+end
+
+get "/security" do
+  @user_id = session[:user_id]
+  erb(:security)
 end
