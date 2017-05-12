@@ -1,0 +1,18 @@
+<% if @shoestores.any?%>
+  <h3>Here are all of the shoestores in the database:</h3>
+  <ul>
+    <% @shoestores.each do |shoestore| %>
+      <li><a href="/shoestores/<%= shoestore.id%>"><%= shoestore.id %><%=" - "%><%= shoestore.name %></a></li>
+    <% end %>
+  </ul>
+
+<% else %>
+  <p>There are no volunteers currently assigned to this project!</p>
+<% end %>
+
+<h3> Add a shoestore: </h3>
+<form action="/shoestores" method="post">
+  <label for="shoestore_name">Shoestore Name:  </label>
+  <input type="text" name="shoestore_name" id="shoestore_name">
+  <button type="submit">Add Shoestore</button>
+</form>

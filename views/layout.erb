@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The Shoestore and Shoe Brands Database:</title>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+  <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+  <link  rel='stylesheet' href="/css/styles.css" type="text/css">
+  <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="jumbotron">
+      <h1>The Shoestore and Shoe Brands Database:</h1>
+    </div>
+    <hr>
+    <div>
+    <%= yield %>
+    </div>
+
+    <br>
+    <hr>
+    <br>
+
+    <div id="navigation">
+      <ul>
+        <li><a href="/shoestores">View Shoestores</a></li>
+        <li><a href="/brands">View Brands</a></li>
+        <li><a href="/">View Homepage</a></li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>
