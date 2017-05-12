@@ -22,7 +22,7 @@ end
 
 post("/shoestores") do
   shoestore_name = params['shoestore_name']
-  Store.create({:name => shoestore_name})
+  Store.find_or_create_by({:name => shoestore_name})
   redirect back
 end
 
@@ -52,7 +52,7 @@ end
 post("/brands") do
   brand_name = params['brand_name']
   brand_price = params['brand_price']
-  Brand.create({:name => brand_name, :price => brand_price})
+  Brand.find_or_create_by({:name => brand_name, :price => brand_price})
   redirect back
 end
 
@@ -71,8 +71,8 @@ delete("/brands/:id") do
 end
 
 post("/shoestores/:id") do
-  brand = Brand.find(params["brand_id"].to_i)
-  store = Store.find(params["id"].to_i)
-  Relationship.create({:brand_id => brand, :store_id => store.id})
+  store_id = params['store_id']
+  brand_id = params['brand_id']
+  Relationship.find_or_create_by({:brand_id => brand_id, :store_id => store_id})
   redirect back
 end
