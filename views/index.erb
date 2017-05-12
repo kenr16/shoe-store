@@ -1,6 +1,6 @@
 <h1>Hello and welcome in to the shoestore database.</h1>
 
-<h3> Create a user id: </h3>
+<h3> First create a user name and password: </h3>
 <form action="/signup" method="post">
   <label for="username">New User Name:  </label>
   <input type="text" name="username" id="username">
@@ -13,11 +13,19 @@
 <hr>
 <br>
 
-<h3> Login: </h3>
+<h3> Second login to the website: </h3>
 <form action="/login" method="post">
   <label for="username">User Name:  </label>
   <input type="text" name="username" id="username">
   <label for="password">User Password:  </label>
   <input type="text" name="password" id="password">
-  <button type="submit">Log In</button>
+  <button type="submit" class="btn btn-primary">Log In</button>
+  <a href="/logout" class="btn btn-danger">Logout</a>
 </form>
+
+
+<br>
+<hr>
+<br>
+
+<h3> Third you may proceed to one of the links below: </h3>
