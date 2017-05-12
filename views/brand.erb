@@ -18,3 +18,14 @@
   <label for="brand_name">Delete this brand:</label>
   <button type="submit" class="btn btn-danger">Delete</button>
 </form>
+
+<ul>
+<% if @brand.stores.any? %>
+  <% @brand.stores.each do |brand| %>
+  <li><a href="/brands/<%=brand.id%>"><%= brand.name %></a></li>
+  <% end %>
+
+  <% else %>
+      <p><strong>This brand is not currently sold at any known stores.</strong></p>
+  <% end %>
+</ul>

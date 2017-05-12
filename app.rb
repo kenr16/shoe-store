@@ -17,7 +17,6 @@ end
 get("/shoestores/:id") do
   @shoestore = Store.find(params['id'])
   @list_brands = Brand.all
-  @store_brands = @shoestore.brands
   erb(:shoestore)
 end
 

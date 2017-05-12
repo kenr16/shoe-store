@@ -34,15 +34,12 @@
 
 <hr>
 
-<% if @store_brands.any? %>
-  <h3> This store currently stocks the following brands:
-  <ul>
-    <% @store_brands.each do |brand| %> </h3>
-      <li><%= brand.name %><%= brand.price %></li>
-    <% end %>
-  </ul>
-
+<ul>
+<% if @shoestore.brands.any? %>
+  <% @shoestore.brands.each do |brand| %>
+  <li><a href="/brand/<%=brand.id%>"><%= brand.name %></a></li>
+  <% end %>
 <% else %>
     <p><strong>This store does not currently stock any known brands.</strong></p>
-
 <% end %>
+</ul>
