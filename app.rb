@@ -5,7 +5,6 @@ require('bcrypt')
 
 enable  :sessions, :logging
 
-
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
 get("/") do
