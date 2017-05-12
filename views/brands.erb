@@ -1,0 +1,20 @@
+<% if @brands.any?%>
+  <h3>Here are all of the shoe brands in the database:</h3>
+  <ul>
+    <% @brands.each do |brand| %>
+      <li><a href="/brands/<%= brand.id%>"><%= brand.id %><%=" - "%><%= brand.name %><%=" - "%><%= brand.price %></a></li>
+    <% end %>
+  </ul>
+
+<% else %>
+  <p>There are no shoe brands currently in the database!</p>
+<% end %>
+
+<h3> Add a shoe brand: </h3>
+<form action="/brands" method="post">
+  <label for="brand_name">Brand Name:  </label>
+  <input type="text" name="brand_name" id="brand_name">
+  <label for="brand_price">Brand Price:  </label>
+  <input type="number" name="brand_price" id="brand_price" min='0' max='5000'>
+  <button type="submit">Add Brand</button>
+</form>

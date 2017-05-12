@@ -1,0 +1,20 @@
+<h1><%= @brand.name %></h1>
+
+
+
+<form id="update_brand" action="/brands/<%= @brand.id %>" method="post">
+  <input name="_method" type="hidden" value="patch">
+  <label for="brand_name">Rename this brand:</label>
+  <input type="text" name="brand_name" id="brand_name" required>
+  <label for="brand_price">Reprice this brand:</label>
+  <input type="text" name="brand_price" id="brand_price" required>
+  <button type="submit" class="btn btn-warning">Update</button>
+</form>
+
+<hr>
+
+<form id="delete_brand" action="/brands/<%= @brand.id %>" method="post">
+  <input name="_method" type="hidden" value="delete">
+  <label for="brand_name">Delete this brand:</label>
+  <button type="submit" class="btn btn-danger">Delete</button>
+</form>

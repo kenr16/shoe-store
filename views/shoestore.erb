@@ -16,3 +16,33 @@
   <label for="shoestore_name">Delete this shoestore:</label>
   <button type="submit" class="btn btn-danger">Delete</button>
 </form>
+
+<hr>
+
+<h3>Make this store an authorized distributor of a brand:</h3>
+<form id="create relationship" action="/shoestores/<%= @shoestore.id %>" method="post">
+  <input type="hidden" name="store_id" id="store_id" value="<%= @shoestore.id %>">
+  <label for="brand_select">Select the Brand:  </label>
+    <br>
+  <select id="brand_id" name="brand_id">
+    <% @list_brands.each() do |brand| %>
+      <option value="<%= brand.id %>"><%= brand.name %></option>
+    <% end %>
+  </select>
+  <button type="submit">Submit</button>
+</form>
+
+<hr>
+
+<% if @store_brands %>
+  <h3> This store currently stocks the following brands:
+  <ul>
+    <% @store_brands.each do |brand| %> </h3>
+      <li><%= brand.name %><%= brand.price %></li>
+    <% end %>
+  </ul>
+
+<% else %>
+    <p><strong>This store does not currently stock any known brands.</strong></p>
+
+<% end %>
