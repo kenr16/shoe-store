@@ -34,7 +34,7 @@
 
 <hr>
 
-<% if @store_brands %>
+<% if @store_brands.any? %>
   <h3> This store currently stocks the following brands:
   <ul>
     <% @store_brands.each do |brand| %> </h3>
