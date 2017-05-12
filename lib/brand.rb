@@ -17,10 +17,16 @@ class Brand < ActiveRecord::Base
     word_array = name.split(" ")
     final_output = []
     word_array.each do |word|
-      letter_array = word.split("")
-      letter_array[0].upcase!
-      final_output.push(letter_array.join)
+      if word == 'and' || word == 'of' || word == 'or'
+        final_output.push(word)
+      else
+        letter_array = word.split("")
+        letter_array[0].upcase!
+        final_output.push(letter_array.join)
+      end
+
     end
+
     self.name = final_output.join(" ")
   end
 end

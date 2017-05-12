@@ -37,7 +37,7 @@
 <ul>
 <% if @shoestore.brands.any? %>
   <% @shoestore.brands.each do |brand| %>
-  <li><a href="/brands/<%=brand.id%>"><%= brand.name %></a></li>
+  <li><a href="/brands/<%=brand.id%>"><%= brand.name %><%= " - $"%><%= brand.cost %></a></li>
   <% end %>
 <% else %>
     <p><strong>This store does not currently stock any known brands.</strong></p>

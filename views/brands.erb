@@ -2,7 +2,7 @@
   <h3>Here are all of the shoe brands in the database:</h3>
   <ul>
     <% @brands.each do |brand| %>
-      <li><a href="/brands/<%= brand.id%>"><%= brand.id %><%=" - "%><%= brand.name %><%=" - "%><%= brand.price %></a></li>
+      <li><a href="/brands/<%= brand.id%>"><%= brand.id %><%=" - "%><%= brand.name %><%=" - "%><%= brand.cost %></a></li>
     <% end %>
   </ul>
 

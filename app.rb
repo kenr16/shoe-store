@@ -53,15 +53,23 @@ end
 post("/brands") do
   brand_name = params['brand_name']
   brand_price = params['brand_price']
-  Brand.find_or_create_by({:name => brand_name, :price => brand_price})
+  var1 = "$"
+  var2 = ""
+  brand_price.to_s
+
+
+
+  Brand.find_or_create_by({:name => brand_name, :cost => brand_price})
   redirect back
 end
 
 patch("/brands/:id") do
   new_name = params['brand_name']
   new_price = params['brand_price']
+
+
   brand = Brand.find(params['id'])
-  brand.update({:name => new_name, :price => new_price})
+  brand.update({:name => new_name, :cost => new_price})
   redirect("/brands/#{brand.id}")
 end
 
