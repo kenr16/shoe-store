@@ -17,8 +17,9 @@ class Store < ActiveRecord::Base
     word_array = name.split(" ")
     final_output = []
     word_array.each do |word|
-      if word == 'and' || word == 'of' || word == 'or'
+      if word == 'and' || word == 'of' || word == 'or' || word == 'the'
         final_output.push(word)
+      elsif word == 'clodhopper' || word == 'lout' || word == 'curmudgeon'
       else
         letter_array = word.split("")
         letter_array[0].upcase!
