@@ -20,7 +20,7 @@
 <hr>
 
 <h3>Make this store an authorized distributor of a brand:</h3>
-<form id="create relationship" action="/shoestores/<%= @shoestore.id %>" method="post">
+<form id="create relationship" action="/shoestores/<%= @shoestore.id %>/relationship" method="post">
   <input type="hidden" name="store_id" id="store_id" value="<%= @shoestore.id %>">
   <label for="brand_select">Select the Brand:  </label>
     <br>
@@ -37,7 +37,7 @@
 <ul>
 <% if @shoestore.brands.any? %>
   <% @shoestore.brands.each do |brand| %>
-  <li><a href="/brand/<%=brand.id%>"><%= brand.name %></a></li>
+  <li><a href="/brands/<%=brand.id%>"><%= brand.name %></a></li>
   <% end %>
 <% else %>
     <p><strong>This store does not currently stock any known brands.</strong></p>

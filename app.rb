@@ -46,6 +46,7 @@ end
 
 get("/brands/:id") do
   @brand = Brand.find(params['id'])
+  @list_stores = Store.all
   erb(:brand)
 end
 
@@ -70,7 +71,14 @@ delete("/brands/:id") do
   redirect('/brands')
 end
 
-post("/shoestores/:id") do
+post("/shoestores/:id/relationship") do
+  store_id = params['store_id']
+  brand_id = params['brand_id']
+  Relationship.find_or_create_by({:brand_id => brand_id, :store_id => store_id})
+  redirect back
+end
+
+post("/brands/:id/relationship") do
   store_id = params['store_id']
   brand_id = params['brand_id']
   Relationship.find_or_create_by({:brand_id => brand_id, :store_id => store_id})

@@ -19,13 +19,31 @@
   <button type="submit" class="btn btn-danger">Delete</button>
 </form>
 
+<br>
+<hr>
+<br>
+
+<h3>Choose an outlet for this particular brand:</h3>
+<form id="create relationship" action="/brands/<%= @brand.id %>/relationship" method="post">
+  <input type="hidden" name="brand_id" id="brand_id" value="<%= @brand.id %>">
+  <label for="store_select">Select the Store:  </label>
+    <br>
+  <select id="store_id" name="store_id">
+    <% @list_stores.each() do |store| %>
+      <option value="<%= store.id %>"><%= store.name %></option>
+    <% end %>
+  </select>
+  <button type="submit">Submit</button>
+</form>
+
+<hr>
+
 <ul>
 <% if @brand.stores.any? %>
-  <% @brand.stores.each do |brand| %>
-  <li><a href="/brands/<%=brand.id%>"><%= brand.name %></a></li>
+  <% @brand.stores.each do |store| %>
+  <li><a href="/shoestores/<%=store.id%>"><%= store.name %></a></li>
   <% end %>
-
-  <% else %>
-      <p><strong>This brand is not currently sold at any known stores.</strong></p>
-  <% end %>
+<% else %>
+    <p><strong>Brand is not currently sold at any known stores.</strong></p>
+<% end %>
 </ul>
